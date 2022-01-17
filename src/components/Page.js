@@ -15,7 +15,7 @@ function Page(props) {
           id: 0, 
           community: "Newcastle Coders",
           event: "Test1",
-          date: "05.05.2022",
+          date: "05-05-2022",
           image: "",
           positionLat: 53.45369120169616,
           positionLng: -2.2660735287002414   
@@ -24,7 +24,7 @@ function Page(props) {
           id: 1,
           community: "Manchester Dojo",
           event: "testing",
-          date: "05.05.2022",
+          date: "05-01-2022",
           image: "",
           positionLat: 53.49369120169616,
           positionLng: -2.1660735287002414    
@@ -33,7 +33,7 @@ function Page(props) {
           id: 2,
           community: "London Loves Coding",
           event: "test2",
-          date: "05.05.2022",
+          date: "05-05-2022",
           image: "",
           positionLat: 53.55369120169616,
           positionLng: -2.5660735287002414
@@ -42,7 +42,7 @@ function Page(props) {
           id: 3,
           community: "Coders United",
           event: "testingAgain",
-          date: "05.05.2022",
+          date: "05-02-2022",
           image: "",
           positionLat: 53.45369120169616,
           positionLng: -2.3660735287002414
@@ -55,14 +55,13 @@ function Page(props) {
 
 
     useEffect(() => {
-          console.log(showInfo)
+        //   console.log(showInfo)
           setShowInfo(showInfo)
           setEposLng(ePosLng)
           setEposLat(ePosLat)
   });
     const callback = () => {
-        console.log('callback function')
-        
+        // console.log('callback function')       
     }
 
     const getInfo = (e) => {
@@ -75,6 +74,15 @@ function Page(props) {
         if (showInfo === false) {
         setShowInfo(true) 
       } 
+    }
+
+    const clickMarker = (e) => {
+        // const eventName = e.target.getAttribute('className')
+        // console.log(eventName)
+        // if (events[e.target.getAttribute('class')] === events[1].eventName) {
+            console.log("HEELo")
+            console.log(e.target)
+        // }
     }
 
     return (
@@ -90,6 +98,7 @@ function Page(props) {
             ePosLat={ePosLat}
             ePosLng={ePosLng}
             hasMarkers ={true}
+            clickMarker={clickMarker}
             showInfo={showInfo}
             closeClick={(e) => setShowInfo(false)}
             events={events}

@@ -3,7 +3,7 @@ import {Padding} from "../styles/Padding";
 
 function Event(props) {
     return (
-      <div >
+      <div key={props.key}>
       <Padding>
         <Card>
           <p>

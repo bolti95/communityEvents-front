@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow, Circle } from '@react-google-maps/api';
 import axios from 'axios';
 const url = 'http://localhost:5000/'
 
@@ -16,10 +16,7 @@ const Map = (props) => {
         lat: props.centerLat,
         lng: props.centerLng
       };
-    const position = {
-        lat: props.positionLat,
-        lng: props.positionLng
-    }
+
     const [error, setError] = useState();
 
     // try to get user location
@@ -31,7 +28,6 @@ const Map = (props) => {
             // navigator.geolocation.getCurrentPosition()
         }
     }, [])
-
 
     const getApiKey =async () => {
         await axios.get(`${url}map`)
@@ -65,6 +61,20 @@ const Map = (props) => {
         setMap(null)
     }, [])
 
+    const options = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        clickable: false,
+        draggable: false,
+        editable: false,
+        visible: true,
+        radius: 200,
+        zIndex: 99999
+      }
+
     return isLoaded ? (
         <Suspense>
            <GoogleMap
@@ -75,6 +85,7 @@ const Map = (props) => {
             onUnmount={onUnmount}
             >
             {props.showInfo ? 
+                <>
                 <InfoWindow
                     onLoad={onLoad}
                     position={{lat: props.ePosLat, lng: props.ePosLng}}
@@ -85,24 +96,39 @@ const Map = (props) => {
                         <h2>{props.eventName}</h2>
                     </div>
                 </InfoWindow> 
+                </>
                 :
                 <></>
             }
-            {/* <Marker position={{lat: events[3].positionLat, lng: events[3].positionLng}}/>  */}
             {props.hasMarkers ? 
             events.map((e)=>{
                 return (
-                    <React.Fragment key={e.event}>
-                    <Marker
+
+                    <Marker 
+                        className={e.id} key={e.event} id={e.id}                       
                         position={{lat: e.positionLat, lng: e.positionLng} }
                         onLoad={onLoad}
-                        // onClick={props.onClick}
+                        onClick={props.clickMarker}
+                        // onClick={props.clickMarker}
                     /> 
-                    </React.Fragment>                             
+                        
                 )})  
             :
                 <Marker></Marker>            
             }
+            {/* {props.hasMarkers ? 
+            // events.map((e)=>{
+                // return (
+                    // <React.Fragment key={e.event}>
+                    <Marker
+                        position={{lat: props.ePosLat, lng: props.ePosLng}}
+                        onLoad={onLoad}
+                    /> 
+                    // </React.Fragment>                             
+                // )})  
+            :
+                <></>            
+            } */}
             </GoogleMap> 
         </Suspense>
 
