@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap');
+
+.App {
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  background-color: #ff823e;
+  color: #4829e3;
+  padding: 0px 0px;
+  height: 100vh;
+  border: 0px;
+}
+
+body {
+  background-color: #ff823e;
+}
