@@ -89,9 +89,11 @@ function Page(props) {
                 />
                 {/* <Datetime onClick={getDateTimeSelected}/> */}
                 <div style={{padding: "20px 10px"}}>
-              
                     <DatePicker onChange={onChangeDate} value={dateValue} minDate={new Date()}/>
                 </div>
+                <h2>
+                    Event Archive
+                </h2>
                 <Events onClick={getInfo} events={events}/>   
                 <p>
                     Want to add an event? 
@@ -99,7 +101,6 @@ function Page(props) {
                 <button>
                     <Link to="/newevent">Click here</Link>
                 </button>
-                    {/* <EventForm /> */}
             </>  
         : 
             <>
