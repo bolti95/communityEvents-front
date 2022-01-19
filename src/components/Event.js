@@ -15,7 +15,7 @@ function Event(props) {
           <p>
             {props.date}
           </p>
-          <button id={props.id} onClick={props.onClick}>
+          <button id={props.id} lat={props.lat} lng={props.lng} onClick={props.onClick}>
             View Location
           </button>
           <br></br>

@@ -3,13 +3,13 @@
   text-align: center;
   font-family: 'Sora', sans-serif;
   padding: 20px 10px;
-  height: 200px;
+  /* height: 200px; */
   border: 0px;
 }
 
 header {
   background-color: #0adf71;
-  padding: 20px 100px;
+  padding: 20px 80px;
   border-radius: 20px;
   margin: 20px 20px;
   width: max-content;
@@ -27,3 +27,34 @@ body {
   color: rgb(0, 0, 0);
   font-size: 20px;
 }
+
+input {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 60%;
+  border-width: 0.1px;
+}
+
+textarea.textBox {
+  font-family: 'Sora', sans-serif;
+  border-radius: 10px;
+  padding: 10px;
+  width: 80%;
+  height: 190px;
+  word-wrap: break-word;
+  word-break: break-all;
+  border-width: 0.1px;
+}
+
+div.react-date-picker__wrapper,
+div.react-time-picker__wrapper {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 1px;
+  width: 190px;
+  border-width: 0.1px; 
+}
+

@@ -18,11 +18,11 @@ function Events(props) {
                     <Event id={filteredE.id} key={filteredE.id} onClick={props.onClick} event={filteredE.event} date={filteredE.date}/>
                 ))} */}
                 {/* NO FILTER */}
-                {props.events[0].data.map((e)=>{
+                {props.events.map((e, index) =>{
                 
                 return (
                     <div key={e._id} >
-                    <Event id={e._id} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
+                    <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
                     </ div>
                  );})}
                 </PageDefault> 

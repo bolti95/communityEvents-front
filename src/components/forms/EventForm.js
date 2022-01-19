@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Input from './Input';
 import AddressForm from './AddressForm';
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 // import DateTimePicker from 'react-datetime-picker';
 import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
-
+import { PageDefault } from '../../styles/Page';
+import { Grid, Col, Row } from '../../styles/blocks/Grid';
+import { Padding } from '../../styles/Padding';
 
 const StyledForm = styled.form `
   display: flex;
@@ -43,8 +45,6 @@ function EventForm(props) {
         console.log(formData)
     }
     const body = {
-        // TODO 
-        // ALL DATA NEEDS TO BE UPDATED AND PASSED OVER. WHY IS IT NOT!!
         firstName: formData.firstName,
         lastName: formData.lastName,
         contactEmail: formData.contactEmail,
@@ -83,121 +83,129 @@ function EventForm(props) {
         })
 
       return (
-        // <StyledForm onSubmit={props.onSubmit}>
-        <StyledForm onSubmit={postFormData}>
-            <label>
-                First Name
-            </label>
-            <input
-                name={"firstName"} 
-                placeholder={"First Name"} 
-                type={"text"}
-                onChange={onChange}
-                // onChange={(e) => setFormData({ ...formData, firstName: e.target.value})}
-            />
-            <label>
-                Last Name
-            </label>
-            <input
-                name={"lastName"} 
-                placeholder={"Last Name"} 
-                type={"text"}
-                onChange={onChange}
-            />
-            <label>
-                Contact Email
-            </label>
-            <input
-                name={"contactEmail"} 
-                placeholder={"Email"} 
-                type={"email"} 
-                onChange={onChange}
-            />
+        <form onSubmit={postFormData}>
+            <Grid>
+                <Row width={"100vw"}>
+                    <Col size={2} width={"50vw"}>
+                    <label>
+                        First Name
+                    </label>
+                    <input
+                        name={"firstName"} 
+                        placeholder={"First Name"} 
+                        type={"text"}
+                        onChange={onChange}
+                    />
+                    <label>
+                        Last Name
+                    </label>
+                    <input
+                        name={"lastName"} 
+                        placeholder={"Last Name"} 
+                        type={"text"}
+                        onChange={onChange}
+                    />
+                    <label>
+                        Contact Email
+                    </label>
+                    <input
+                        name={"contactEmail"} 
+                        placeholder={"Email"} 
+                        type={"email"} 
+                        onChange={onChange}
+                    />
+                                <label>
+                        Event Title
+                    </label>
+                    <input
+                        name={"eventTitle"} 
+                        placeholder={"Event Title"} 
+                        type={"text"}
+                        onChange={onChange}
+                    />
+                    <label>
+                        Event Description
+                    </label>
+                    <textarea
+                        name={"eventDescription"} 
+                        className='textBox'
+                        placeholder={"Event Description"} 
+                        type={"text"}
+                        width={"300px"}
+                        height={"300px"}
+                        onChange={onChange}
+                    />
+                    </Col>
+                    <Col size={2} width={"50vw"}>
                         <label>
-                Event Title
-            </label>
-            <input
-                name={"eventTitle"} 
-                placeholder={"Event Title"} 
-                type={"text"}
-                onChange={onChange}
-            />
-            <label>
-                Event Description
-            </label>
-            <input
-                name={"eventDescription"} 
-                placeholder={"Event Description"} 
-                type={"text"}
-                width={"300px"}
-                height={"300px"}
-                onChange={onChange}
-            />
-            <label>
-                Event Date
-            </label>
-            <DatePicker onChange={onChangeDate} value={dateValue}/>
-            <label>
-                Event Time
-            </label>
-            <TimePicker onChange={onChangeTime} value={timeValue} />
-            <label>
-                Event Location
-            </label>
-            <label>
-                Venue
-            </label>
-            <input
-                name={"venue"} 
-                placeholder={"Venue"} 
-                type={"text"}
-                onChange={onChange}
-                // onChange={(e) => setFormData({ ...formData, firstName: e.target.value})}
-            />
-            <label>
-                Street Address
-            </label>
-            <input
-                name={"streetAddress"} 
-                placeholder={"Street Address"} 
-                type={"text"}
-                onChange={onChange}
-                // onChange={(e) => setFormData({ ...formData, firstName: e.target.value})}
-            />
-            <label>
-                City
-            </label>
-            <input
-                name={"city"} 
-                placeholder={"City"} 
-                type={"text"}
-                onChange={onChange}
-            />
-            <label>
-                Region
-            </label>
-            <input
-                name={"region"} 
-                placeholder={"region"} 
-                type={"text"}
-                onChange={onChange}
-            />
-            <label>
-                Postcode
-            </label>
-            <input
-                name={"postcode"} 
-                placeholder={"postcode"} 
-                type={"text"}
-                onChange={onChange}
-            />
-
-            <Input 
-                name={"submit"} 
-                type={"submit"} 
-                value={"Create"} 
-            />       
-        </StyledForm>
+                            Event Date
+                        </label>
+                        <div style={{width: "150px"}}>
+                            <DatePicker onChange={onChangeDate} value={dateValue} minDate={new Date()}/>
+                        </div>
+                        <label>
+                            Event Time
+                        </label>
+                        <div style={{width: "150px"}}>
+                            <TimePicker onChange={onChangeTime} value={timeValue}/>
+                        </div>
+                        <label>
+                            Event Location
+                        </label>
+                        <label>
+                            Venue
+                        </label>
+                        <input
+                            name={"venue"} 
+                            placeholder={"Venue"} 
+                            type={"text"}
+                            onChange={onChange}
+                        />
+                        <label>
+                            Street Address
+                        </label>
+                        <input
+                            name={"streetAddress"} 
+                            placeholder={"Street Address"} 
+                            type={"text"}
+                            onChange={onChange}
+                        />
+                        <label>
+                            City
+                        </label>
+                        <input
+                            name={"city"} 
+                            placeholder={"City"} 
+                            type={"text"}
+                            onChange={onChange}
+                        />
+                        <label>
+                            Region
+                        </label>
+                        <input
+                            name={"region"} 
+                            placeholder={"region"} 
+                            type={"text"}
+                            onChange={onChange}
+                        />
+                        <label>
+                            Postcode
+                        </label>
+                        <input
+                            name={"postcode"} 
+                            placeholder={"postcode"} 
+                            type={"text"}
+                            onChange={onChange}
+                        />
+                        <Input 
+                            name={"submit"} 
+                            type={"submit"} 
+                            value={"Create"} 
+                        /> 
+                    </Col>
+                </Row>
+            </Grid>      
+        </form>
 
       );
   }
@@ -205,7 +213,7 @@ function EventForm(props) {
   export default EventForm;
 
 
-
+                // onChange={(e) => setFormData({ ...formData, firstName: e.target.value})}
       // const postFormData = async (e) => {
     //     e.preventDefault()
     //     let newEvent = await fetch("http://localhost:5000/events/create",
