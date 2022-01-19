@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+
+   
 import './App.css';
+import Page from './components/Page';
+import { Routes, Route, BrowserRouter} from 'react-router-dom'
+import EventForm from './components/forms/EventForm';
+import { PageDefault } from './styles/Page';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PageDefault flexDirect={"column"} display={"flex"}>
+        <header>
+        <h1>Community Map</h1>
+        </header>
+      </PageDefault>
+      <BrowserRouter>
+      <Routes>
+        <Route exact path= "/" element={<Page />} />
+        <Route exact path= "/newevent" element={<EventForm />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
