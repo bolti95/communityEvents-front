@@ -9,17 +9,19 @@ import { PageDefault } from './styles/Page';
 function App() {
   return (
     <div className="App">
-      <PageDefault flexDirect={"column"} display={"flex"}>
+      <PageDefault display={"flex"}>
         <header>
         <h1>Community Map</h1>
         </header>
       </PageDefault>
+      <PageDefault display={"flex"}>
       <BrowserRouter>
       <Routes>
         <Route exact path= "/" element={<Page />} />
         <Route exact path= "/newevent" element={<EventForm />} />
       </Routes>
       </BrowserRouter>
+      </PageDefault>
     </div>
   );
 }

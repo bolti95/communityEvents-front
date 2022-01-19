@@ -1,19 +1,44 @@
 import Event from "./Event";
 import { PageDefault } from "../styles/Page";
-import { Suspense, useEffect, useState } from "react";
-
-// TODO
-// import { events } from "../testData/data"
-// replace with a fetch request
+import { useState } from "react";
+import moment from "moment";
 
 
 function Events(props) {
-    // console.log(props.events[0].data)
-    // const eventsList = [props.events]
+    // const [formattedDate, setFormattedDate] = useState(new Date())
+    console.log(props.selectedDate, props.showBy)
+    console.log(props.events[0].eventDate)
+    // if (props.showBy === "calendar") {
+
+        // setFormattedDate(format)
+    // } else {
+    //     console.log("what dooo")
+        // setFormattedDate(new Date())
+    // }
+
+    // props.events.eventDate === props.selectedDate 
+    // e.eventDate.substring(0, 10)
     return (
         <>
-            {/* {dateNow ? */}
-                <PageDefault display={'flex'} flexDirection={'row'}>
+            {props.showBy === "calendar" 
+            ? 
+            <PageDefault display={'flex'} flexDirection={'row'}>
+                {props.events.map((e, index) =>{                
+                return (
+                    
+                    <div key={e._id} >
+                    {props.selectedDate === e.eventDate.substring(0, 10) 
+                    ? 
+                    <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10) }/>
+                    :
+                    <></>
+                    }
+                    </ div>
+                 );})
+                 }
+            </PageDefault>
+            :
+            <PageDefault display={'flex'} flexDirection={'row'}>
                   {/* {props.events.filter(e => (e.date.replace(/\D/g, "") - dateNow) > 0).map(filteredE => (
                     <Event id={filteredE.id} key={filteredE.id} onClick={props.onClick} event={filteredE.event} date={filteredE.date}/>
                 ))} */}
@@ -22,10 +47,12 @@ function Events(props) {
                 
                 return (
                     <div key={e._id} >
-                    <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
+                        <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
                     </ div>
                  );})}
                 </PageDefault> 
+            }
+                
             {/* :
             null           
             } */}

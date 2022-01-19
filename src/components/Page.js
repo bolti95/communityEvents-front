@@ -2,21 +2,17 @@ import { useState, useEffect } from 'react';
 import { PageDefault } from '../styles/Page';
 import Map from './Map';
 import Events from './Events';
-import EventForm from './forms/EventForm';
-import Datetime from "react-datetime";
-import DateTimePicker from "react-datetime-picker";
 import DatePicker from "react-date-picker";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {Row} from "../styles/blocks/Grid"
+import { Padding } from '../styles/Padding';
 
 const url = [
     'http://localhost:5000/events/display',
     ]
 
 function Page(props) {
-  const [value, onChange] = useState(new Date());
-  console.log(value)
-
     const [events, setEvents] = useState();
     const [showInfo, setShowInfo] = useState(false);
     const [eName, setEventName] = useState('');
@@ -24,6 +20,7 @@ function Page(props) {
     const [ePosLat, setEposLat] = useState(0);
     const [dateValue, onChangeDate] = useState(new Date());
     const [apiCalled, setApiCalled] = useState(false);
+    const [showBy, setShowBy] = useState("calendar");
 
     useEffect(() => {
         console.log(showInfo)
@@ -61,45 +58,90 @@ function Page(props) {
         setShowInfo(true) 
       } 
     }
-    const getDateTimeSelected = () => {
-
+    const selectArchive = () => {
+        onChangeDate(new Date())
+        setShowBy("archive")
     }
+    const selectCalendar = () => {
+        onChangeDate(new Date())
+        setShowBy("calendar")
+    }
+    const format = dateValue.toISOString().substring(0, 10)
+
     return (
     <PageDefault display={'flex'} flexDirection={'column'}>
-        
-        <p>
-            Community Events Ltd. Community Event Map displaying community events.
-        </p>
+        <Padding>
+            <p>
+                Community Events Ltd. Community Event Map displaying community events.
+            </p>
+        </Padding>
         {apiCalled 
         ? 
             <>
-                <Map    
-                    centerLat={53.45369120169616} 
-                    centerLng={-2.2660735287002414}
-                    positionLat={53.45184113070764}
-                    positionLng={-2.263217758839349}
-                    // ePos for use in getInfo event
-                    ePosLat={ePosLat}
-                    ePosLng={ePosLng}
-                    hasMarkers ={true}
-                    showInfo={showInfo}
-                    closeClick={(e) => setShowInfo(false)}
-                    events={events}
-                    eventName={eName}
-                />
-                {/* <Datetime onClick={getDateTimeSelected}/> */}
-                <div style={{padding: "20px 10px"}}>
-              
-                    <DatePicker onChange={onChangeDate} value={dateValue} minDate={new Date()}/>
+                <div>
+                    <p>
+                        Want to add an event? 
+                    </p>
+                    <Padding>
+                        <button>
+                            <Link to="/newevent">Click here</Link>
+                        </button>
+                    </Padding> 
                 </div>
-                <Events onClick={getInfo} events={events}/>   
-                <p>
-                    Want to add an event? 
-                </p> 
-                <button>
-                    <Link to="/newevent">Click here</Link>
-                </button>
-                    {/* <EventForm /> */}
+                <Padding>
+                    <Map    
+                        centerLat={53.45369120169616} 
+                        centerLng={-2.2660735287002414}
+                        positionLat={53.45184113070764}
+                        positionLng={-2.263217758839349}
+                        // ePos for use in getInfo event
+                        ePosLat={ePosLat}
+                        ePosLng={ePosLng}
+                        hasMarkers ={true}
+                        showInfo={showInfo}
+                        closeClick={(e) => setShowInfo(false)}
+                        events={events}
+                        eventName={eName}
+                    />
+                </Padding>
+                {/* <Datetime onClick={getDateTimeSelected}/> */}
+                <Row>
+                <Padding>
+                    <button onClick={(e) => selectCalendar(e)}>
+                        Calendar
+                    </button>
+                </Padding>
+                <Padding>
+                    <button onClick={(e) => selectArchive(e)}>
+                        Archive
+                    </button>
+                </Padding>
+                </Row>
+                {showBy === "calendar" ?
+                <div>
+                    <h2>
+                        Event Calendar
+                    </h2>
+                    <p>
+                        Use the calendar to filter events by date.
+                    </p>
+                    <div style={{padding: "20px 10px"}}>
+                        <DatePicker onChange={onChangeDate} value={dateValue} minDate={new Date()}/>
+                    </div>
+                    <Events onClick={getInfo} events={events} showBy={showBy} selectedDate={format}/> 
+                </div>
+                : 
+                <div>
+                    <h2>
+                        Event Archive
+                    </h2>
+                    <p>
+                        The entire history of all community events.
+                    </p>
+                    <Events onClick={getInfo} events={events}/>   
+                </div>
+                }
+
             </>  
         : 
             <>

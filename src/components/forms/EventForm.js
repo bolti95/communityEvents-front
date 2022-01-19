@@ -9,6 +9,7 @@ import DatePicker from "react-date-picker";
 import { PageDefault } from '../../styles/Page';
 import { Grid, Col, Row } from '../../styles/blocks/Grid';
 import { Padding } from '../../styles/Padding';
+import moment from 'moment';
 
 const StyledForm = styled.form `
   display: flex;
@@ -22,7 +23,7 @@ const url = [
     ]
 
 function EventForm(props) {
-    const [dateValue, onChangeDate] = useState(new Date());
+    const [dateValue, onChangeDate] = useState(moment().toDate());
     const [timeValue, onChangeTime] = useState();
     const [dataRsp, setDataRsp] = useState();
     const [formData, setFormData] = useState({
@@ -196,12 +197,15 @@ function EventForm(props) {
                             placeholder={"postcode"} 
                             type={"text"}
                             onChange={onChange}
-                        />
-                        <Input 
-                            name={"submit"} 
-                            type={"submit"} 
-                            value={"Create"} 
-                        /> 
+                        />              
+                        <Padding>
+                            <input 
+                                className='submit'
+                                name={"submit"} 
+                                type={"submit"} 
+                                value={"Create Event"} 
+                            /> 
+                        </Padding> 
                     </Col>
                 </Row>
             </Grid>      
