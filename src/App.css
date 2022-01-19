@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200&family=Ubuntu:wght@500&display=swap');
 .App {
   text-align: center;
   font-family: 'Sora', sans-serif;
@@ -9,14 +8,22 @@
 }
 
 header {
-  background-color: #11100f;
-  padding: 20px 20px;
+  background-color: #0adf71;
+  padding: 20px 100px;
   border-radius: 20px;
-  margin: 10px 10px;
-  color: #4829e3;
+  margin: 20px 20px;
+  width: max-content;
+  color: #9225ff;
 
 }
 
+h1 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 40px;
+}
+
 body {
-  background-color: #f0e7e2;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
 }

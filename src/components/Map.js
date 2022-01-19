@@ -9,7 +9,7 @@ const containerStyle = {
   };
   
 const Map = (props) => {
-    const events = props.events
+    const events = props.eventsEffect
     const isUndefined = typeof(events)
     console.log(isUndefined)
     const center = {
@@ -36,7 +36,7 @@ const Map = (props) => {
     const getApiKey =async () => {
         await axios.get(`${url}map`)
         .then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             return response.data
         })
         .catch(error => console.log(`Error: ${error}`));
@@ -54,7 +54,8 @@ const Map = (props) => {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey:     useEffect(() => {
+        googleMapsApiKey:  
+        useEffect(() => {
             getApiKey()
         }, [])
     })
@@ -94,7 +95,7 @@ const Map = (props) => {
                 return (
                     <React.Fragment key={e.event}>
                     <Marker
-                        position={{lat: e.positionLat, lng: e.positionLng} }
+                        position={{lat: e.lat, lng: e.lng} }
                         onLoad={onLoad}
                         // onClick={props.onClick}
                     /> 

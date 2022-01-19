@@ -3,21 +3,22 @@ import {Padding} from "../styles/Padding";
 
 function Event(props) {
     return (
-      <div >
+      <div>
       <Padding>
         <Card>
-          <p>
+          <h3>
             {props.event}
-          </p>
+          </h3>
+          <h4>
+            Date
+          </h4>
           <p>
             {props.date}
           </p>
           <button id={props.id} onClick={props.onClick}>
             View Location
           </button>
-
           <br></br>
-
           <button onClick={props.showEventPage}>
             More Info
           </button>
