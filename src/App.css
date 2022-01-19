@@ -3,13 +3,20 @@
 .App {
   text-align: center;
   font-family: 'Sora', sans-serif;
-  background-color: #ff823e;
-  color: #4829e3;
-  padding: 0px 0px;
-  height: 100vh;
+  padding: 20px 10px;
+  height: 200px;
   border: 0px;
 }
 
+header {
+  background-color: #11100f;
+  padding: 20px 20px;
+  border-radius: 20px;
+  margin: 10px 10px;
+  color: #4829e3;
+
+}
+
 body {
-  background-color: #ff823e;
+  background-color: #f0e7e2;
 }

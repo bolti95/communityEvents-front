@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import Input from './Input';
-import react, {useState, useEffect} from "react";
-import DateTimePicker from 'react-datetime-picker';
+import AddressForm from './AddressForm';
+import {useState, useEffect} from "react";
+// import DateTimePicker from 'react-datetime-picker';
 import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
+
 
 const StyledForm = styled.form `
   display: flex;
@@ -13,23 +15,25 @@ const StyledForm = styled.form `
   align-items: center;
 `
 
-const url = 'http://localhost:5000/events/create'
-
-
+const url = [
+    'http://localhost:5000/events/create',
+    ]
 
 function EventForm(props) {
     const [dateValue, onChangeDate] = useState(new Date());
     const [timeValue, onChangeTime] = useState();
     const [dataRsp, setDataRsp] = useState();
-
-
-
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         contactEmail: '',
         eventTitle: '',
         eventDescription: '', 
+        venue: '',
+        streetAddress: '',
+        city: '',
+        region: '',
+        postcode: ''
     })
 
     function onChange (e) {
@@ -46,24 +50,30 @@ function EventForm(props) {
         contactEmail: formData.contactEmail,
         eventTitle: formData.eventTitle,
         eventDescription: formData.eventDescription,
-        // eventLocation: formData.eventLocation,
+        venue: formData.venue,
+        streetAddress: formData.streetAddress,
+        city: formData.city,
+        region: formData.region,
+        postcode: formData.postcode,
         eventDate: dateValue,
         eventTime: timeValue,
     }
+
     const postFormData = async (e) => {
+        e.preventDefault() 
+            await axios({
+                method: 'post',
+                url: url[0],
+                data: body,
+             })
+        .then((response) => {
+                console.log(response)
+                setDataRsp(response)
+                console.log(dataRsp)
+            })
+        .catch(error => console.log(`Error: ${error}`))
         console.log(formData)
         // e.preventDefault()
-        await axios({
-            method: 'post',
-            url: url,
-            data: body,
-         })
-        .then((response) => {
-            console.log(response)
-            setDataRsp(response)
-            console.log(dataRsp)
-        })
-        .catch(error => console.log(`Error: ${error}`));
     }
 
         useEffect(() => {
@@ -103,15 +113,7 @@ function EventForm(props) {
                 type={"email"} 
                 onChange={onChange}
             />
-            <label>
-                Event Date
-            </label>
-            <DatePicker onChange={onChangeDate} value={dateValue}/>
-            <label>
-                Event Time
-            </label>
-            <TimePicker onChange={onChangeTime} value={timeValue} />
-            <label>
+                        <label>
                 Event Title
             </label>
             <input
@@ -131,6 +133,65 @@ function EventForm(props) {
                 height={"300px"}
                 onChange={onChange}
             />
+            <label>
+                Event Date
+            </label>
+            <DatePicker onChange={onChangeDate} value={dateValue}/>
+            <label>
+                Event Time
+            </label>
+            <TimePicker onChange={onChangeTime} value={timeValue} />
+            <label>
+                Event Location
+            </label>
+            <label>
+                Venue
+            </label>
+            <input
+                name={"venue"} 
+                placeholder={"Venue"} 
+                type={"text"}
+                onChange={onChange}
+                // onChange={(e) => setFormData({ ...formData, firstName: e.target.value})}
+            />
+            <label>
+                Street Address
+            </label>
+            <input
+                name={"streetAddress"} 
+                placeholder={"Street Address"} 
+                type={"text"}
+                onChange={onChange}
+                // onChange={(e) => setFormData({ ...formData, firstName: e.target.value})}
+            />
+            <label>
+                City
+            </label>
+            <input
+                name={"city"} 
+                placeholder={"City"} 
+                type={"text"}
+                onChange={onChange}
+            />
+            <label>
+                Region
+            </label>
+            <input
+                name={"region"} 
+                placeholder={"region"} 
+                type={"text"}
+                onChange={onChange}
+            />
+            <label>
+                Postcode
+            </label>
+            <input
+                name={"postcode"} 
+                placeholder={"postcode"} 
+                type={"text"}
+                onChange={onChange}
+            />
+
             <Input 
                 name={"submit"} 
                 type={"submit"} 

@@ -6,7 +6,9 @@ import EventForm from './components/forms/EventForm';
 function App() {
   return (
     <div className="App">
+      <header>
       <h1>Community Map</h1>
+      </header>
       <BrowserRouter>
       <Routes>
         <Route exact path= "/" element={<Page />} />

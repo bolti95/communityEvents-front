@@ -106,15 +106,16 @@ function Page(props) {
             eventName={eName}
         />
         {/* <Datetime onClick={getDateTimeSelected}/> */}
-        <DateTimePicker onChange={onChange} value={value} minDate={new Date()}/>
-
+        <div style={{padding: "20px 10px"}}>
+            <DateTimePicker onChange={onChange} value={value} minDate={new Date()}/>
+        </div>
         <Events onClick={getInfo} events={events} dateTimeInput={dateTimeInput}/>   
         <p>
             Want to add an event? 
-            <button>
-                <Link to="/newevent">Click here</Link>
-            </button>
         </p> 
+        <button>
+            <Link to="/newevent">Click here</Link>
+        </button>
             {/* <EventForm /> */}
       
       </PageDefault>
