@@ -10,16 +10,13 @@ const containerStyle = {
   
 const Map = (props) => {
     const events = props.events
+    console.log(events)
     const isUndefined = typeof(events)
     console.log(isUndefined)
     const center = {
         lat: props.centerLat,
         lng: props.centerLng
       };
-    const position = {
-        lat: props.positionLat,
-        lng: props.positionLng
-    }
     const [error, setError] = useState();
 
     // try to get user location
@@ -36,7 +33,7 @@ const Map = (props) => {
     const getApiKey =async () => {
         await axios.get(`${url}map`)
         .then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             return response.data
         })
         .catch(error => console.log(`Error: ${error}`));
@@ -54,7 +51,8 @@ const Map = (props) => {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey:     useEffect(() => {
+        googleMapsApiKey:  
+        useEffect(() => {
             getApiKey()
         }, [])
     })
@@ -92,12 +90,26 @@ const Map = (props) => {
             {props.hasMarkers ? 
             events.map((e)=>{
                 return (
-                    <React.Fragment key={e.event}>
+                    <React.Fragment key={e._id}>
                     <Marker
-                        position={{lat: e.positionLat, lng: e.positionLng} }
+                        position={{lat: e.lat, lng: e.lng} }
                         onLoad={onLoad}
                         // onClick={props.onClick}
                     /> 
+                    {/* <InfoWindow
+                    onLoad={onLoad}
+                    position={{lat: e.lat, lng: e.lng}}
+                    onCloseClick={props.closeClick}
+                    // get marker position for 1 marker
+                >
+                    <div>
+                        {e.eventTitle}, 
+                        <br></br>
+                        {e.eventDate.substring(0, 10)},
+                        <br></br>
+                        {e.eventTime}
+                    </div>
+                </InfoWindow>  */}
                     </React.Fragment>                             
                 )})  
             :

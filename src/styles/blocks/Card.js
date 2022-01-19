@@ -7,9 +7,9 @@ export const Card = styled.div `
     align-items: center;
     justify-content: center;
     background-color: darkgrey;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: max-content;
     border-radius: 20px;
-    padding: 0.5px;
+    padding: 5.5px;
 `
 

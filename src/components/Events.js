@@ -7,52 +7,9 @@ import { Suspense, useEffect, useState } from "react";
 // replace with a fetch request
 
 
-
 function Events(props) {
-    // const totalEventsDay = props.events[1].date.replace(/\D/g, "").substring(0, 2)
-    // const totalEventsMon = props.events[1].date.replace(/\D/g, "").substring(2, 4)
-    // const totalEventsYr = props.events[1].date.replace(/\D/g, "").substring(4)
-    // console.log("day= " + totalEventsDay + " month = " + totalEventsMon + " year  = " + totalEventsYr)
-    // const [dateNowDay, setDateNowDay] = useState()
-    // const [dateNowMon, setDateNowMon] = useState()
-    // const [dateNowYr, setDateNowYr] = useState()
-
-    // useEffect(() => {
-    //     var date = new Date(); 
-    //     var isoString = date.toISOString().split('T')[0]
-    //     var localeDate = date.toLocaleDateString("en-US")
-    //     var newLocaleDate = localeDate.replace(/\D/g, "");
-
-    //     var dateObj = new Date();
-    //     var day = dateObj.getUTCDate();
-    //     var month = dateObj.getUTCMonth() + 1;
-    //     var year = dateObj.getUTCFullYear();
-    //     // if (month < 10) {
-    //     //     var dateTotalDay = (`${day}` + '0' + `${month}${year}`).substring(0, 2)
-    //     //     var dateTotalMonYr = (`${day}` + '0' + `${month}${year}`).substring(3)
-    //     // } else {
-    //     if (day < 10) {
-    //         var dateTotalDay = ('0'+ `${day}`)
-    //         console.log(dateTotalDay)
-    //     } else {
-    //         var dateTotalDay = day
-    //     }
-    //     if (month < 10) {
-    //         var dateTotalMon = ('0'+ `${month}`)
-    //         return dateTotalMon
-    //     } else {
-    //         var dateTotalMon = month
-    //     }
-
-    //         var dateTotalYr = year
-    //     // }
-    //     setDateNowDay(dateTotalDay)
-    //     setDateNowMon(dateTotalMon)
-    //     setDateNowYr(dateTotalYr)
-    // }, []);
-    // console.log(dateNowDay)
-    // console.log(dateNowMon)
-    // console.log(dateNowYr)
+    // console.log(props.events[0].data)
+    // const eventsList = [props.events]
     return (
         <>
             {/* {dateNow ? */}
@@ -61,15 +18,12 @@ function Events(props) {
                     <Event id={filteredE.id} key={filteredE.id} onClick={props.onClick} event={filteredE.event} date={filteredE.date}/>
                 ))} */}
                 {/* NO FILTER */}
-                {props.events.map((e)=>{
+                {props.events.map((e, index) =>{
                 
                 return (
-                    <>
-                    {/* {e.date.replace(/\D/g, "").substring(0, 2) > dateNowDay && e.date.replace(/\D/g, "").substring(2,3) > dateNowMon && e.date.replace(/\D/g, "").substring(4) >= dateNowYr
-                    || e.date.replace(/\D/g, "").substring(0, 1) <= dateNowDay && e.date.replace(/\D/g, "").substring(2,3) > dateNowMon ? */}
-                    <Event id={e.id} key={e.id} onClick={props.onClick} event={e.event} date={e.date}/>
-                    {/* : <></>}  */}
-                    </>
+                    <div key={e._id} >
+                    <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
+                    </ div>
                  );})}
                 </PageDefault> 
             {/* :
