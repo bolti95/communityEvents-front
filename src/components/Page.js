@@ -145,7 +145,10 @@ function Page(props) {
             </>  
         : 
             <>
-                Loading!!
+            <span className="circle">
+            <br></br>
+            <p>The map and events will load when the server is running</p>
+            </span>                
             </>
         }
     
