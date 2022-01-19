@@ -1,23 +1,13 @@
 import Event from "./Event";
+import EventInfo from "./EventInfo";
 import { PageDefault } from "../styles/Page";
-import { useState } from "react";
-import moment from "moment";
 
 
 function Events(props) {
-    // const [formattedDate, setFormattedDate] = useState(new Date())
+// add event description in here
     console.log(props.selectedDate, props.showBy)
     console.log(props.events[0].eventDate)
-    // if (props.showBy === "calendar") {
 
-        // setFormattedDate(format)
-    // } else {
-    //     console.log("what dooo")
-        // setFormattedDate(new Date())
-    // }
-
-    // props.events.eventDate === props.selectedDate 
-    // e.eventDate.substring(0, 10)
     return (
         <>
             {props.showBy === "calendar" 
@@ -48,8 +38,12 @@ function Events(props) {
                 return (
                     <div key={e._id} >
                         <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
+                    {/* <div>
+                        {e.eventDescription}
+                    </div> */}
                     </ div>
                  );})}
+
                 </PageDefault> 
             }
                 

@@ -122,9 +122,11 @@ function Page(props) {
                     <h2>
                         Event Calendar
                     </h2>
-                    <p>
-                        Use the calendar to filter events by date.
-                    </p>
+                    <Padding>
+                        <p style={{margin: "30px 30px"}}>
+                            Use the calendar to filter events by date.
+                        </p>
+                    </Padding>
                     <div style={{padding: "20px 10px"}}>
                         <DatePicker onChange={onChangeDate} value={dateValue} minDate={new Date()}/>
                     </div>
@@ -135,9 +137,11 @@ function Page(props) {
                     <h2>
                         Event Archive
                     </h2>
-                    <p>
-                        The entire history of all community events.
-                    </p>
+                    <Padding>
+                        <p style={{margin: "30px 30px"}}>
+                            The entire history of all community events.
+                        </p>
+                    </Padding>
                     <Events onClick={getInfo} events={events}/>   
                 </div>
                 }

@@ -1,22 +1,18 @@
-import styled from 'styled-components';
 import axios from 'axios';
-import Input from './Input';
-import AddressForm from './AddressForm';
 import { useState, useEffect } from "react";
 // import DateTimePicker from 'react-datetime-picker';
 import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
-import { PageDefault } from '../../styles/Page';
 import { Grid, Col, Row } from '../../styles/blocks/Grid';
 import { Padding } from '../../styles/Padding';
 import moment from 'moment';
 
-const StyledForm = styled.form `
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
+// const StyledForm = styled.form `
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `
 
 const url = [
     'http://localhost:5000/events/create',

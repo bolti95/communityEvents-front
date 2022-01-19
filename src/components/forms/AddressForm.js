@@ -1,10 +1,3 @@
-import Geocode from "react-geocode";
-import axios from 'axios';
-import {useState, useEffect} from "react";
-const url = 'http://localhost:5000/'
-
-
-
 
 function AddressForm(props) {
     // function onChange (e) {

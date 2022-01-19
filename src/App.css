@@ -18,16 +18,18 @@ header {
   border-radius: 20px;
   color: #9225ff;
   background-color: #0adf71;
-
 }
 
+nav {
+  font-weight: bold;
+}
+
+
 body {
-  /* width: 90vw; */
   font-size: 20px;
   color: rgb(0, 0, 0);
   background-color: #ffffff;
 }
-
 
 input {
   width: 60%;
@@ -76,7 +78,7 @@ a {
 .App {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  /* padding: 20px 10px; */
   /* height: 200px; */
   border: 0px;
   text-align: center;
