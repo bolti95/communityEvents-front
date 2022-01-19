@@ -28,6 +28,7 @@ body {
   background-color: #ffffff;
 }
 
+
 input {
   width: 60%;
   padding: 10px;
@@ -124,21 +125,21 @@ div.react-calendar {
 }
 
 .circle {
-
   height: max-content;
   width: 205px;
   padding: 20px;
   border-radius: 50%;
+  border-width: 1px;
   transform: scale(1);
   font-family: 'Sora', sans-serif;
   font-size: 24px;
   color: #0adf71; 
-  background-color: #9777b8;
+  background-color: #fbf7ff;
+  border-color: #9225ff;
   border-radius: 100%;
   animation-name: rotate;
   animation-duration: 0.5s;
-  animation-direction: alternate;
-  
+  animation-direction: alternate;  
 }
 
 .circle:after{

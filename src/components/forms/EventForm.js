@@ -84,8 +84,8 @@ function EventForm(props) {
         })
 
       return (
-        <form onSubmit={postFormData}>
-            <Grid>
+        <form onSubmit={postFormData} >
+            <Grid >
                 <Row width={"100vw"}>
                     <Col size={2} width={"50vw"}>
                     <label>
