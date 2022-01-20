@@ -4,9 +4,10 @@ import { PageDefault } from "../styles/Page";
 
 
 function Events(props) {
-// add event description in here
-    console.log(props.selectedDate, props.showBy)
-    console.log(props.events[0].eventDate)
+    // TODO
+    // add event description in here
+    // console.log(props.selectedDate, props.showBy)
+    // console.log(props.events[0].eventDate)
 
     return (
         <>
