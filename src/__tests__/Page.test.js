@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, mount } from '@testing-library/react';
 import Page from "../components/Page";
-import Events from "../components/Events";
+// import Events from "../components/Events";
 
 //   needs a mock function to test data going into the events element
 describe("Page component tests", () => {
@@ -10,7 +10,7 @@ describe("Page component tests", () => {
         render(<Page/>)
         expect(screen.getByText(PageText)).toBeInTheDocument();
     });
-    test("accepts event props", () => {
+    test("Page accepts event props", () => {
         const events = [{
             firstName: "Tom",
             lastName: "Blob",

@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import App from "../App";
 
 
-test('renders Application', () => {
+test('renders Application header', () => {
   const PageText = "Community Map"
   render(
     <React.StrictMode>
