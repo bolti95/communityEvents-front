@@ -29,5 +29,5 @@ function Event(props) {
     );
   }
   
-  export default Event;
-//   this component will pull up event info submitted into the server
+export default Event;
+

@@ -1,28 +1,25 @@
-import styled from 'styled-components';
 import axios from 'axios';
-import Input from './Input';
-import AddressForm from './AddressForm';
 import { useState, useEffect } from "react";
 // import DateTimePicker from 'react-datetime-picker';
 import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
-import { PageDefault } from '../../styles/Page';
 import { Grid, Col, Row } from '../../styles/blocks/Grid';
 import { Padding } from '../../styles/Padding';
+import moment from 'moment';
 
-const StyledForm = styled.form `
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
+// const StyledForm = styled.form `
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `
 
 const url = [
     'http://localhost:5000/events/create',
     ]
 
 function EventForm(props) {
-    const [dateValue, onChangeDate] = useState(new Date());
+    const [dateValue, onChangeDate] = useState(moment().toDate());
     const [timeValue, onChangeTime] = useState();
     const [dataRsp, setDataRsp] = useState();
     const [formData, setFormData] = useState({
@@ -83,8 +80,8 @@ function EventForm(props) {
         })
 
       return (
-        <form onSubmit={postFormData}>
-            <Grid>
+        <form onSubmit={postFormData} >
+            <Grid >
                 <Row width={"100vw"}>
                     <Col size={2} width={"50vw"}>
                     <label>
@@ -196,12 +193,15 @@ function EventForm(props) {
                             placeholder={"postcode"} 
                             type={"text"}
                             onChange={onChange}
-                        />
-                        <Input 
-                            name={"submit"} 
-                            type={"submit"} 
-                            value={"Create"} 
-                        /> 
+                        />              
+                        <Padding>
+                            <input 
+                                className='submit'
+                                name={"submit"} 
+                                type={"submit"} 
+                                value={"Create Event"} 
+                            /> 
+                        </Padding> 
                     </Col>
                 </Row>
             </Grid>      

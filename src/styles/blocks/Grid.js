@@ -6,8 +6,10 @@ export const Col = styled.div `
     width: ${( props ) => props.width}; 
     display: flex;
     flex-direction: column;
-    text-align: left;
-    left: 0;
+    justify-content: center;
+    align-items: center;
+    /* text-align: left; */
+    /* left: 0; */
 `
 export const Row = styled.div `
     width: ${( props ) => props.width}; 
