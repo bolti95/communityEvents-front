@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import Page from "../components/Page";
 import Events from "../components/Events";
 
-test("accepts event props", () => {
+test("Events accepts event props", () => {
         const showBy = "calendar"
         const getInfo = () => {
             console.log("hello")

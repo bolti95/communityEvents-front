@@ -10,7 +10,7 @@ describe("Page component tests", () => {
         render(<Page/>)
         expect(screen.getByText(PageText)).toBeInTheDocument();
     });
-    test("accepts event props", () => {
+    test("Page accepts event props", () => {
         const events = [{
             firstName: "Tom",
             lastName: "Blob",
