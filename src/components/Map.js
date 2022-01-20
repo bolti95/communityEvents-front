@@ -17,12 +17,12 @@ const Map = (props) => {
         lat: props.centerLat,
         lng: props.centerLng
       };
-    const [error, setError] = useState();
-
+    // const [error, setError] = useState();
     // try to get user location
     useEffect(() => {
         if (!navigator.geolocation) {
-            setError('Geolocation not supported ');
+            console.log('Geolocation not supported ');
+            // setError('Geolocation not supported ');
             return
         } else {
             // navigator.geolocation.getCurrentPosition()

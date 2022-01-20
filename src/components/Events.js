@@ -1,5 +1,5 @@
 import Event from "./Event";
-import EventInfo from "./EventInfo";
+// import EventInfo from "./EventInfo";
 import { PageDefault } from "../styles/Page";
 
 
