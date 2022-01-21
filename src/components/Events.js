@@ -42,7 +42,7 @@ function Events(props) {
                     <Event id={filteredE.id} key={filteredE.id} onClick={props.onClick} event={filteredE.event} date={filteredE.date}/>
                 ))} */}
                 {/* NO FILTER */}
-                {props.events.map((e, index) =>{
+                {[...props.events].reverse().map((e, index) =>{
                 
                 return (
                     <div key={e._id} >

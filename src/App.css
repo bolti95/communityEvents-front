@@ -63,14 +63,21 @@ button {
   border-width: 0.1px;
   font-family: 'Sora', sans-serif;
   font-weight: bold;
-  color: #ffffff; 
+  color: #0adf71;
   background-color: #000000;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #9225ff;
 }
 
 a {
   color: #0adf71;
   text-decoration: none;
+}
+a:hover {
+  color: #9225ff;
 }
 
 /* divs */
