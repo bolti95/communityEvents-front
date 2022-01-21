@@ -10,6 +10,6 @@ export const Card = styled.div `
     width: 250px;
     height: ${( props ) => props.height};
     border-radius: 20px;
-    padding: 5.5px;
+    padding: 10.5px;
 `
 

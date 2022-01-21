@@ -4,11 +4,6 @@ import { PageDefault } from "../styles/Page";
 
 
 function Events(props) {
-    // TODO
-    // add event description in here
-    // console.log(props.selectedDate, props.showBy)
-    // console.log(props.events[0].eventDate)
-    console.log(props.events[3].eventDescription);
     return (
         <>
             {props.showBy === "calendar" 
@@ -27,6 +22,7 @@ function Events(props) {
                         onClick={props.onClick} 
                         event={e.eventTitle} 
                         date={e.eventDate.substring(0, 10)}
+                        time={e.eventTime}
                         description={e.eventDescription}
                     />
                     :
@@ -53,6 +49,7 @@ function Events(props) {
                         onClick={props.onClick} 
                         event={e.eventTitle} 
                         date={e.eventDate.substring(0, 10)}
+                        time={e.eventTime}
                         description={e.eventDescription}
                         />
                     {/* <div>

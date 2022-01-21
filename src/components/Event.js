@@ -13,7 +13,7 @@ function Event(props) {
         {eventDesc === "show desc" ? 
           <div>
           <Padding>
-            <Card height={"250px"}>
+            <Card height={"max-content"}>
               <p>{props.description}</p>
               <button id={props.id} lat={props.lat} lng={props.lng} onClick={props.onClick}>
                  View Location
@@ -32,12 +32,13 @@ function Event(props) {
                <h3>
                  {props.event}
                </h3>
-               <h4>
-                 Date
-               </h4>
                <p>
-                 {props.date}
+                 Date: {props.date}
                </p>
+               <p>
+                 Time: {props.time}
+               </p>
+               
                <button id={props.id} lat={props.lat} lng={props.lng} onClick={props.onClick}>
                  View Location
                </button>

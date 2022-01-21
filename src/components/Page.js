@@ -29,7 +29,6 @@ function Page(props) {
     const [showBy, setShowBy] = useState("calendar");
 
     useEffect(() => {
-        // console.log(showInfo)
         setShowInfo(showInfo)
         setEposLng(ePosLng)
         setEposLat(ePosLat)
@@ -45,6 +44,21 @@ function Page(props) {
                 setApiCalled(true)
               })
         .catch(error => console.log(`Error: ${error}`))
+        axios({
+            method: 'delete',
+            url: url[1],
+         })
+        .then((response) => {
+                //   setEvents(response.data)
+                // const eventsList = [response]
+                // const eventsData = eventsList[0].data
+                // setEvents(eventsData);
+                console.log(response)
+                // setApiCalled(true)
+                })
+        .catch(error => console.log(`Error: ${error}`))
+
+        
     }, []);
     const callback = () => {
         console.log('callback function')
@@ -191,13 +205,3 @@ function Page(props) {
 export default Page;
 
 
-        // axios({
-        //     method: 'delete',
-        //     url: url[1],
-        //  })
-        // .then((response) => {
-        //         console.log(response)
-        //     //   setEvents(response.data)
-        //         setApiCalled(true)
-        //     })
-        // .catch(error => console.log(`Error: ${error}`))

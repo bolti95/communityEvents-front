@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Page from './components/Page';
 import { Routes, Route, BrowserRouter} from 'react-router-dom'
@@ -8,7 +9,9 @@ import { PageDefault } from './styles/Page';
 import MainNav from './components/navs/MainNav';
 import { Padding } from './styles/Padding';
 
+
 function App() {
+  console.log("React version in use: " + React.version)
   return (
     <div className="App">
       <BrowserRouter>

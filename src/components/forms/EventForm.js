@@ -5,7 +5,7 @@ import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
 import { Grid, Col, Row } from '../../styles/blocks/Grid';
 import { Padding } from '../../styles/Padding';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 // const StyledForm = styled.form `
@@ -17,6 +17,7 @@ import moment from 'moment';
 
 const url = [
     'http://localhost:5000/events/create',
+    'http://localhost:5000/events/display',
     ]
 
 function EventForm(props) {
@@ -71,7 +72,8 @@ function EventForm(props) {
         }
     }
     const navigateToSubmitted = async () => {
-       await navigate("/event/submitted")
+        await window.location.reload(false);
+        // await navigate("/")
     }
 
     const postFormData = async (e) => {
@@ -89,6 +91,8 @@ function EventForm(props) {
                 })
             .catch(error => console.log(`Error: ${error}`))
             console.log(formData)
+            // navigateToSubmitted()
+            // navigate.push("/")
         // }
         // e.preventDefault()        
     }
@@ -96,6 +100,15 @@ function EventForm(props) {
         useEffect(() => {
             return () => {
             console.log(formData.firstName)
+            axios({
+                method: 'get',
+                url: url[1],
+             })
+            .then((response) => {
+                    //   setEvents(response.data)
+                    console.log(response)
+                    })
+            .catch(error => console.log(`Error: ${error}`))
             }
         })
 
