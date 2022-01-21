@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {Row} from "../styles/blocks/Grid"
 import { Padding } from '../styles/Padding';
+import * as Scroll from 'react-scroll';
+import { scroller } from 'react-scroll';
 
 const url = [
     'http://localhost:5000/events/display',
@@ -43,16 +45,6 @@ function Page(props) {
                 setApiCalled(true)
               })
         .catch(error => console.log(`Error: ${error}`))
-        // axios({
-        //     method: 'delete',
-        //     url: url[1],
-        //  })
-        // .then((response) => {
-        //         console.log(response)
-        //     //   setEvents(response.data)
-        //         setApiCalled(true)
-        //     })
-        // .catch(error => console.log(`Error: ${error}`))
     }, []);
     const callback = () => {
         console.log('callback function')
@@ -74,6 +66,7 @@ function Page(props) {
         setEventDate(eventDate)
         setEventVenue(eventVenue)
         setEventDescription(eventDescription)
+        scrollTo()
         if (showInfo === false) {
         setShowInfo(true) 
       } 
@@ -92,6 +85,14 @@ function Page(props) {
     }
     const format = dateValue.toISOString().substring(0, 10)
 
+    const scrollTo = () => {
+        scroller.scrollTo('scrollPlace', {
+            duration: 800,
+            delay: 0,
+            smooth: 'easeInOutQuart'
+          });
+    }
+
     return (
     <PageDefault display={'flex'} flexDirection={'column'}>
         <Padding>
@@ -102,7 +103,7 @@ function Page(props) {
         {apiCalled 
         ? 
             <>
-                <div>
+                <div className='scrollPlace'>
                     <p>
                         Want to add an event? 
                     </p>
@@ -190,42 +191,13 @@ function Page(props) {
 export default Page;
 
 
-// const events = 
-// [
-//   { 
-//         id: 0, 
-//         community: "Newcastle Coders",
-//         event: "Test1",
-//         date: "20-05-2022",
-//         image: "",
-//         positionLat: 53.45369120169616,
-//         positionLng: -2.2660735287002414   
-//     },
-//     { 
-//         id: 1,
-//         community: "Manchester Dojo",
-//         event: "testing",
-//         date: "01-01-2022",
-//         image: "",
-//         positionLat: 53.49369120169616,
-//         positionLng: -2.1660735287002414    
-//     },
-//     { 
-//         id: 2,
-//         community: "London Loves Coding",
-//         event: "test2",
-//         date: "05-02-2022",
-//         image: "",
-//         positionLat: 53.55369120169616,
-//         positionLng: -2.5660735287002414
-//     },
-//     { 
-//         id: 3,
-//         community: "Coders United",
-//         event: "testingAgain",
-//         date: "15-01-2022",
-//         image: "",
-//         positionLat: 53.45369120169616,
-//         positionLng: -2.3660735287002414
-//     },
-// ]
+        // axios({
+        //     method: 'delete',
+        //     url: url[1],
+        //  })
+        // .then((response) => {
+        //         console.log(response)
+        //     //   setEvents(response.data)
+        //         setApiCalled(true)
+        //     })
+        // .catch(error => console.log(`Error: ${error}`))
