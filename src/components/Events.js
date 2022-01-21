@@ -1,5 +1,5 @@
 import Event from "./Event";
-import EventInfo from "./EventInfo";
+// import EventInfo from "./EventInfo";
 import { PageDefault } from "../styles/Page";
 
 
@@ -8,7 +8,7 @@ function Events(props) {
     // add event description in here
     // console.log(props.selectedDate, props.showBy)
     // console.log(props.events[0].eventDate)
-
+    console.log(props.events[3].eventDescription);
     return (
         <>
             {props.showBy === "calendar" 
@@ -20,7 +20,15 @@ function Events(props) {
                     <div key={e._id} >
                     {props.selectedDate === e.eventDate.substring(0, 10) 
                     ? 
-                    <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10) }/>
+                    <Event 
+                        id={index} 
+                        lat={e.lat}
+                        lng={e.lng} 
+                        onClick={props.onClick} 
+                        event={e.eventTitle} 
+                        date={e.eventDate.substring(0, 10)}
+                        description={e.eventDescription}
+                    />
                     :
                     <></>
                     }
@@ -34,11 +42,19 @@ function Events(props) {
                     <Event id={filteredE.id} key={filteredE.id} onClick={props.onClick} event={filteredE.event} date={filteredE.date}/>
                 ))} */}
                 {/* NO FILTER */}
-                {props.events.map((e, index) =>{
+                {[...props.events].reverse().map((e, index) =>{
                 
                 return (
                     <div key={e._id} >
-                        <Event id={index} lat={e.lat} lng={e.lng} onClick={props.onClick} event={e.eventTitle} date={e.eventDate.substring(0, 10)}/>
+                        <Event 
+                        id={index} 
+                        lat={e.lat} 
+                        lng={e.lng} 
+                        onClick={props.onClick} 
+                        event={e.eventTitle} 
+                        date={e.eventDate.substring(0, 10)}
+                        description={e.eventDescription}
+                        />
                     {/* <div>
                         {e.eventDescription}
                     </div> */}

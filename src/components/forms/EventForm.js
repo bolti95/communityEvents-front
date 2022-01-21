@@ -5,6 +5,7 @@ import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
 import { Grid, Col, Row } from '../../styles/blocks/Grid';
 import { Padding } from '../../styles/Padding';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 // const StyledForm = styled.form `
@@ -19,9 +20,11 @@ const url = [
     ]
 
 function EventForm(props) {
+    const navigate = useNavigate();
     const [dateValue, onChangeDate] = useState(moment().toDate());
     const [timeValue, onChangeTime] = useState();
     const [dataRsp, setDataRsp] = useState();
+    const [error, setError] = useState()
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -39,7 +42,6 @@ function EventForm(props) {
         let name = e.target.name ;
         let value = e.target.value;
         setFormData({ ...formData, [name]: value });
-        console.log(formData)
     }
     const body = {
         firstName: formData.firstName,
@@ -56,21 +58,39 @@ function EventForm(props) {
         eventTime: timeValue,
     }
 
+    const checkValue = (e) => {  
+        // e.preventDefault()     
+        if (formData.firstName=== "" || formData.lastName=== "" || formData.contactEmail === ""|| formData.eventTitle === ""|| formData.eventDescription=== "" || formData.city=== "" || formData.postcode === ""|| formData.venue === "") {
+            console.error("Missing input")
+            setError("One or more missing input")
+            return error
+        } else {
+            console.log("all values complete!")
+            postFormData()
+            return ("Complete!")
+        }
+    }
+    const navigateToSubmitted = async () => {
+       await navigate("/event/submitted")
+    }
+
     const postFormData = async (e) => {
-        e.preventDefault() 
+        // e.preventDefault()       
         await axios({
                 method: 'post',
                 url: url[0],
                 data: body,
              })
-        .then((response) => {
-                console.log(response)
-                setDataRsp(response)
-                console.log(dataRsp)
-            })
-        .catch(error => console.log(`Error: ${error}`))
-        console.log(formData)
-        // e.preventDefault()
+            .then((response) => {
+                    console.log(response)
+                    setDataRsp(response)
+                    console.log(dataRsp)
+                    navigateToSubmitted()
+                })
+            .catch(error => console.log(`Error: ${error}`))
+            console.log(formData)
+        // }
+        // e.preventDefault()        
     }
 
         useEffect(() => {
@@ -80,7 +100,7 @@ function EventForm(props) {
         })
 
       return (
-        <form onSubmit={postFormData} >
+        <form onSubmit={checkValue} >
             <Grid >
                 <Row width={"100vw"}>
                     <Col size={2} width={"50vw"}>
@@ -193,7 +213,10 @@ function EventForm(props) {
                             placeholder={"postcode"} 
                             type={"text"}
                             onChange={onChange}
-                        />              
+                        />     
+                        <Padding>
+                            {error}    
+                        </Padding>         
                         <Padding>
                             <input 
                                 className='submit'

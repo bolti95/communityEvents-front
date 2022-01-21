@@ -8,7 +8,7 @@ export const Card = styled.div `
     justify-content: center;
     background-color: darkgrey;
     width: 250px;
-    height: max-content;
+    height: ${( props ) => props.height};
     border-radius: 20px;
     padding: 5.5px;
 `
