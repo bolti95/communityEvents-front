@@ -3,6 +3,7 @@ import Page from './components/Page';
 import { Routes, Route, BrowserRouter} from 'react-router-dom'
 import EventForm from './components/forms/EventForm';
 import EventInfo from './components/EventInfo';
+import Submitted from './components/Submitted';
 import { PageDefault } from './styles/Page';
 import MainNav from './components/navs/MainNav';
 import { Padding } from './styles/Padding';
@@ -24,6 +25,7 @@ function App() {
         <Route exact path= "/" element={<Page />} />
         <Route exact path= "/newevent" element={<EventForm />} />
         <Route exact path= "/eventinfo/:eventName" element={<EventInfo/>} />
+        <Route exact path= "/event/submitted" element={<Submitted/>} />
       </Routes>
       </PageDefault>
       </BrowserRouter>

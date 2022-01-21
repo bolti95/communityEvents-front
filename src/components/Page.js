@@ -10,12 +10,16 @@ import { Padding } from '../styles/Padding';
 
 const url = [
     'http://localhost:5000/events/display',
+    'http://localhost:5000/events/expired',
     ]
 
 function Page(props) {
     const [events, setEvents] = useState();
     const [showInfo, setShowInfo] = useState(false);
     const [eName, setEventName] = useState('');
+    const [eDesc, setEventDescription] = useState('');
+    const [eDate, setEventDate] = useState('');
+    const [eVenue, setEventVenue] = useState('');
     const [ePosLng, setEposLng] = useState(0);
     const [ePosLat, setEposLat] = useState(0);
     const [dateValue, onChangeDate] = useState(new Date());
@@ -23,7 +27,7 @@ function Page(props) {
     const [showBy, setShowBy] = useState("calendar");
 
     useEffect(() => {
-        console.log(showInfo)
+        // console.log(showInfo)
         setShowInfo(showInfo)
         setEposLng(ePosLng)
         setEposLat(ePosLat)
@@ -31,17 +35,24 @@ function Page(props) {
                   method: 'get',
                   url: url[0],
                })
-          .then((response) => {
-                  console.log(response)
+        .then((response) => {
                 //   setEvents(response.data)
                 const eventsList = [response]
                 const eventsData = eventsList[0].data
                 setEvents(eventsData);
                 setApiCalled(true)
               })
-          .catch(error => console.log(`Error: ${error}`))
-
-
+        .catch(error => console.log(`Error: ${error}`))
+        // axios({
+        //     method: 'delete',
+        //     url: url[1],
+        //  })
+        // .then((response) => {
+        //         console.log(response)
+        //     //   setEvents(response.data)
+        //         setApiCalled(true)
+        //     })
+        // .catch(error => console.log(`Error: ${error}`))
     }, []);
     const callback = () => {
         console.log('callback function')
@@ -51,13 +62,26 @@ function Page(props) {
         const eventIdLat = events[e.target.getAttribute('id')].lat
         const eventIdLng = events[e.target.getAttribute('id')].lng
         const eventName = events[e.target.getAttribute('id')].eventTitle
+        const eventDate = events[e.target.getAttribute('id')].eventDate
+        const eventVenue = events[e.target.getAttribute('id')].venue
+        const eventDescription = events[e.target.getAttribute('id')].eventDescription
+        const eventId = e.target.getAttribute('eventtitle')
+        console.log(eventName, eventDate, eventVenue, eventDescription)
+        console.log(eventId)
         setEposLat(eventIdLat)
         setEposLng(eventIdLng)
         setEventName(eventName)
+        setEventDate(eventDate)
+        setEventVenue(eventVenue)
+        setEventDescription(eventDescription)
         if (showInfo === false) {
         setShowInfo(true) 
       } 
     }
+    // const onMarkerClick = () => {
+    //     console.log("Hello!!")
+    //     const 
+    // }
     const selectArchive = () => {
         onChangeDate(new Date())
         setShowBy("archive")
@@ -102,6 +126,9 @@ function Page(props) {
                         closeClick={(e) => setShowInfo(false)}
                         events={events}
                         eventName={eName}
+                        eventDate={eDate}
+                        eventVenue={eVenue}
+                        eventDescription={eDesc}
                     />
                 </Padding>
                 {/* <Datetime onClick={getDateTimeSelected}/> */}
